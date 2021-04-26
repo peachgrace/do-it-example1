@@ -1,13 +1,14 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import withStyles, {css} from './withStyles';
+import withStyles, { css } from './withStyles';
 class Button extends PureComponent {
     render(){
-        const{children, disabled, styles,
+        const { children, disabled, styles,
             large, xlarge, small, xsmall, primary, secondary,
             onPress,} =this.props;
         return(
-<Button  {...css(styles.default,
+<Button  
+{...css(styles.default,
     xsmall && styles.xsmall,
     small && styles.small,
     large && styles.large,
@@ -16,20 +17,20 @@ class Button extends PureComponent {
     primary && styles.primary,)} onClick={onPress}>
     {children}
 </Button>
-
         );
     }
 }
 Button.PropTypes = {
 children: PropTypes.node.isRequired,
-onpress: PropTypes.func,
-small: PropTypes.bool,
 xsmall: PropTypes.bool,
+small: PropTypes.bool,
 large: PropTypes.bool,
 xlarge: PropTypes.bool,
 secondary: PropTypes.bool,
 primary: PropTypes.bool,
+onPress: PropTypes.func,
 };
+
 Button.defaultProps = {
     onPress: ()=>{},
     xsmall: false,
@@ -39,7 +40,8 @@ Button.defaultProps = {
     secondary: false,
     primary: false,
 };
-export default withStyles(({color, size, unit})=> ({
+
+export default withStyles(({ color, size, unit })=> ({
     default: {
         border: 1,
         borderStyle: 'solid',
@@ -71,7 +73,7 @@ export default withStyles(({color, size, unit})=> ({
 
     },
     secondary:{
-        color: color.secondary,
         borderColor: color.secondary,
-    },
+        color: color.secondary,
+    }
 }))(Button);
